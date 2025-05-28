@@ -1,0 +1,26 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap");
+@font-face {
+  font-family: "boulder";
+  src: url("fonts/Boulder-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Anderson Grotesk";
+  src: url("fonts/AndersonGrotesk-Bold.otf") format("opentype");
+}
+
+/* VARIABLES */
+:root {
+  --light-green-color: #f6f8d5;
+  --green-color: #255f38;
+  --blue-color: #205781;
+  --white-color: #ffffff;
+  --gray-color: #5c5c5c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
