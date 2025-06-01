@@ -1,0 +1,76 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap");
+@font-face {
+  font-family: "boulder";
+  src: url("assets/fonts/Boulder-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Anderson Grotesk";
+  src: url("assets/fonts/AndersonGrotesk-Bold.otf") format("opentype");
+}
+
+/* VARIABLES */
+:root {
+  --light-green-color: #f6f8d5;
+  --green-color: #255f38;
+  --blue-color: #205781;
+  --white-color: #ffffff;
+  --gray-color: #5c5c5c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo h1 {
+    font-family: "boulder";
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: var(--blue-color);
+  }
+  
+  nav {
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: var(--white-color);
+    z-index: 100;
+  }
+  
+  .nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Anderson Grotesk";
+    gap: 2rem;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: var(--blue-color);
+    font-weight: 500;
+  }
+  
+  .nav-item a:hover {
+    color: #000;
+  }
+
+  .content h1 {
+    font-family: "boulder";
+    font-size: 2rem;
+    color: var(--green-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+  }

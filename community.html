@@ -8,22 +8,22 @@
   </head>
   <body class="community-page">
     <nav class="community-nav">
-      <div class="logo-com">
+      <div class="logo">
         <h1>PICVERSE</h1>
       </div>
-      <div class="navi-menu">
-        <div id="home-nav" class="navi-item"><a href="index.html">Home</a></div>
-        <div id="about-nav" class="navi-item">
+      <div class="nav-menu">
+        <div id="home-nav" class="nav-item"><a href="index.html">Home</a></div>
+        <div id="about-nav" class="nav-item">
           <a href="about.html">About</a>
         </div>
-        <div id="gallery-nav" class="navi-item">
+        <div id="gallery-nav" class="nav-item">
           <a href="gallery.html">Gallery</a>
         </div>
-        <div id="community-nav" class="navi-item">
+        <div id="community-nav" class="nav-item">
           <a href="community.html">Community</a>
         </div>
       </div>
-      <div class="sign-in-com">
+      <div class="sign-in">
         <a id="register-nav" class="register" href="register.html">Sign In</a>
       </div>
     </nav>
@@ -231,48 +231,160 @@
             </div>
           </div>
 
-          <a href="#" class="see-more-link">See More</a>
+          <a href="community_details.html" class="see-more-link">See More</a>
         </div>
 
         <div class="recent-activity">
-          <h2>Recents</h2>
-          <div class="activity-item">
-            <div class="activity-avatar"></div>
-            <div class="activity-content">
-              <p><strong>Tasha Monroe</strong> posted a thread.</p>
-              <span class="activity-time">16s ago</span>
+          <div class="section-header">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="recents">Recents</button>
+              <button class="tab-btn" data-tab="active-users">
+                Active Users
+              </button>
+            </div>
+            <div class="swipe-indicator">
+              <div class="dot active"></div>
+              <div class="dot"></div>
             </div>
           </div>
 
-          <div class="activity-item">
-            <div class="activity-avatar"></div>
-            <div class="activity-content">
-              <p><strong>Kevin Hart</strong> started following you.</p>
-              <span class="activity-time">2h ago</span>
-            </div>
-          </div>
+          <div class="swipeable-content">
+            <div class="tab-content active" id="recents">
+              <div class="activity-item">
+                <div class="activity-avatar"></div>
+                <div class="activity-content">
+                  <p><strong>Tasha Monroe</strong> posted a thread.</p>
+                  <span class="activity-time">16s ago</span>
+                </div>
+              </div>
 
-          <div class="activity-item">
-            <div class="activity-avatar user-icon"></div>
-            <div class="activity-content">
-              <p>You posted a thread.</p>
-              <span class="activity-time">2w ago</span>
-            </div>
-          </div>
+              <div class="activity-item">
+                <div class="activity-avatar"></div>
+                <div class="activity-content">
+                  <p><strong>Kevin Hart</strong> started following you.</p>
+                  <span class="activity-time">2h ago</span>
+                </div>
+              </div>
 
-          <div class="activity-item">
-            <div class="activity-avatar"></div>
-            <div class="activity-content">
-              <p><strong>Kevin Hart</strong> commented on your thread.</p>
-              <span class="activity-time">5w ago</span>
-            </div>
-          </div>
+              <div class="activity-item">
+                <div class="activity-avatar user-icon"></div>
+                <div class="activity-content">
+                  <p>You posted a thread.</p>
+                  <span class="activity-time">2w ago</span>
+                </div>
+              </div>
 
-          <div class="activity-item">
-            <div class="activity-avatar"></div>
-            <div class="activity-content">
-              <p><strong>Sonya Leonard</strong> started following you.</p>
-              <span class="activity-time">10w ago</span>
+              <div class="activity-item">
+                <div class="activity-avatar"></div>
+                <div class="activity-content">
+                  <p><strong>Kevin Hart</strong> commented on your thread.</p>
+                  <span class="activity-time">5w ago</span>
+                </div>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-avatar"></div>
+                <div class="activity-content">
+                  <p><strong>Sonya Leonard</strong> started following you.</p>
+                  <span class="activity-time">10w ago</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-content" id="active-users">
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Kevin Hart</span>
+                  <span class="user-status">Turning ideas into impact</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Sonya Newton</span>
+                  <span class="user-status"
+                    >Always learning, always building</span
+                  >
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Teresa Vonjac</span>
+                  <span class="user-status"
+                    >Where innovation meets execution</span
+                  >
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Jovannah</span>
+                  <span class="user-status">Dreamer with a plan</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Alex Chen</span>
+                  <span class="user-status">Creating digital experiences</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Maria Garcia</span>
+                  <span class="user-status">Design is my passion</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Jake Wilson</span>
+                  <span class="user-status">Code, create, repeat</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Sarah Kim</span>
+                  <span class="user-status">Visual storyteller</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Mike Johnson</span>
+                  <span class="user-status">Building the future</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
+
+              <div class="user-item">
+                <div class="user-avatar"></div>
+                <div class="user-info">
+                  <span class="username">Tasha Monroe</span>
+                  <span class="user-status">Art is life</span>
+                </div>
+                <div class="online-indicator"></div>
+              </div>
             </div>
           </div>
         </div>

@@ -2,12 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap");
 @font-face {
   font-family: "boulder";
-  src: url("fonts/Boulder-Bold.ttf") format("truetype");
+  src: url("assets/fonts/Boulder-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Anderson Grotesk";
-  src: url("fonts/AndersonGrotesk-Bold.otf") format("opentype");
+  src: url("assets/fonts/AndersonGrotesk-Bold.otf") format("opentype");
 }
 
 /* VARIABLES */
@@ -25,7 +25,6 @@
   box-sizing: border-box;
 }
 
-/* HOME PAGE */
 .logo h1 {
   font-family: "boulder";
   font-size: 1.5rem;

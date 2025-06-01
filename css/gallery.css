@@ -2,12 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap");
 @font-face {
   font-family: "boulder";
-  src: url("fonts/Boulder-Bold.ttf") format("truetype");
+  src: url("assets/fonts/Boulder-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Anderson Grotesk";
-  src: url("fonts/AndersonGrotesk-Bold.otf") format("opentype");
+  src: url("assets/fonts/AndersonGrotesk-Bold.otf") format("opentype");
 }
 
 /* VARIABLES */
@@ -26,250 +26,441 @@
 }
 
 .logo h1 {
-    font-family: "boulder";
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    color: var(--blue-color);
-  }
-  
-  nav {
-    padding: 1.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: var(--white-color);
-    z-index: 100;
-  }
-  
-  .nav-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: "Anderson Grotesk";
-    gap: 2rem;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .nav-item a {
-    text-decoration: none;
-    color: var(--blue-color);
-    font-weight: 500;
-  }
-  
-  .nav-item a:hover {
-    color: #000;
-  }
-  
-  .register {
-    text-decoration: none;
-    color: var(--blue-color);
-    font-weight: 500;
-    font-family: "Anderson Grotesk";
-  }
+  font-family: "boulder";
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--blue-color);
+}
+
+nav {
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--white-color);
+  z-index: 100;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Anderson Grotesk";
+  gap: 2rem;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: var(--blue-color);
+  font-weight: 500;
+}
+
+.nav-item a:hover {
+  color: #000;
+}
+
+.register {
+  text-decoration: none;
+  color: var(--blue-color);
+  font-weight: 500;
+  font-family: "Anderson Grotesk";
+}
 
 .gallery-nav {
-    padding: 1.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: var(--light-green-color);
-    z-index: 100;
-  }
-  
-  .gallery-page {
-    background-color: var(--light-green-color);
-    min-height: 150vh;
-    overflow-x: hidden;
-  }
-  
-  .gallery-main {
-    padding: 2rem 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    position: relative;
-  }
-  
-  .gallery-header {
-    margin-bottom: 2.5rem;
-  }
-  
-  .gallery-header h1 {
-    font-family: "Inter", sans-serif;
-    font-variant: semibold;
-    color: var(--blue-color);
-    size: 40px;
-  }
-  
-  .filter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    max-width: 1200px;
-  
-    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-    margin-bottom: 15px;
-  }
-  
-  .filter-tags.moving {
-    transform: translateY(-60px);
-  }
-  
-  .tags {
-    background: transparent;
-    border: 1px solid var(--blue-color);
-    border-radius: 100px;
-    padding: 0.5rem 1.5rem;
-    color: var(--blue-color);
-    text-decoration: none;
-    font-family: "Inter", sans-serif;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .tags:hover,
-  .tags.active {
-    background-color: var(--blue-color);
-    color: white;
-  }
-  
-  @keyframes expand {
-    from {
-      transform: translateY();
-      max-height: 650px;
-    }
-    to {
-      transform: translateY(-60px);
-      max-height: 2000px;
-    }
-  }
-  
-  @keyframes revealItem {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  .filter-tags.sticky {
-    position: fixed;
-    top: 80px;
-    z-index: 90;
-    background-color: var(--light-green-color);
-    padding: 15px;
-    border-radius: 8px;
-    width: calc(100% - 8rem);
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .tags-placeholder {
-    display: none;
-    visibility: hidden;
-  }
-  
-  .tags-placeholder.active {
-    display: block;
-    visibility: visible;
-  }
-  
-  .gallery-feeds {
-    animation-name: expand;
-    animation-duration: 0.5s;
-    animation-direction: forwards;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    transform: translateY(100px);
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    will-change: transform;
-  
+  padding: 1.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--light-green-color);
+  z-index: 100;
+}
+
+.gallery-page {
+  background-color: var(--light-green-color);
+  min-height: 150vh;
+  overflow-x: hidden;
+}
+
+.gallery-page.compact {
+  min-height: 100vh;
+}
+
+.gallery-main {
+  padding: 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gallery-header {
+  margin-bottom: 2.5rem;
+}
+
+.gallery-header h1 {
+  font-family: "Inter", sans-serif;
+  font-variant: semibold;
+  color: var(--blue-color);
+  size: 40px;
+}
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1200px;
+
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  margin-bottom: 15px;
+}
+
+.filter-tags.moving {
+  transform: translateY(-60px);
+}
+
+.tags {
+  background: transparent;
+  border: 1px solid var(--blue-color);
+  border-radius: 100px;
+  padding: 0.5rem 1.5rem;
+  color: var(--blue-color);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tags:hover,
+.tags.active {
+  background-color: var(--blue-color);
+  color: white;
+}
+
+@keyframes expand {
+  from {
     transform: translateY();
     max-height: 650px;
-  
-    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
-      max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
-  
-  .gallery-feeds.smooth-scroll {
+  to {
     transform: translateY(-60px);
     max-height: 2000px;
   }
-  
-  .gallery-feeds.expanded {
-    animation: expand 0.8s forwards;
-  }
-  
-  .gallery-item-hidden {
+}
+
+@keyframes revealItem {
+  from {
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: scale(0.9);
   }
-  
-  .gallery-item-hidden.reveal {
-    animation: revealItem 0.6s forwards;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .gallery-item {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .gallery-item:hover {
-    transform: translateY(-5px);
-  }
-  
-  .gallery-item-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-    padding: 1.5rem 1rem 1rem;
-    color: white;
+}
+
+.filter-tags.sticky {
+  position: fixed;
+  top: 80px;
+  z-index: 90;
+  background-color: var(--light-green-color);
+  padding: 15px;
+  border-radius: 8px;
+  width: calc(100% - 8rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tags-placeholder {
+  display: none;
+  visibility: hidden;
+}
+
+.tags-placeholder.active {
+  display: block;
+  visibility: visible;
+}
+
+.gallery-feeds {
+  animation-name: expand;
+  animation-duration: 0.5s;
+  animation-direction: forwards;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  transform: translateY(100px);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  will-change: transform;
+  transform: translateY();
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+    max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.gallery-feeds.smooth-scroll {
+  transform: translateY(-60px);
+  max-height: 2000px;
+}
+
+.gallery-feeds.expanded {
+  animation: expand 0.8s forwards;
+}
+
+.gallery-item-hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.gallery-item-hidden.reveal {
+  animation: revealItem 0.6s forwards;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+}
+
+.gallery-item-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 1.5rem 1rem 1rem;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+}
+
+.gallery-item-info h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.gallery-item:hover .gallery-item-info {
+  opacity: 1;
+}
+
+.gallery-item-info p {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.gallery-item img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-family: "Inter", sans-serif;
+  font-weight: 100;
+  background-color: var(--blue-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 30px;
+  padding-bottom: 5px;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.fab:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: left;
-    font-family: "Inter", sans-serif;
   }
-  
-  .gallery-item-info h3 {
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-    font-weight: 600;
-  }
-  
-  .gallery-item:hover .gallery-item-info {
+  to {
     opacity: 1;
   }
-  
-  .gallery-item-info p {
-    font-family: "Inter", sans-serif;
-    font-size: 0.8rem;
-    opacity: 0.8;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7) translateY(50px);
   }
-  
-  .gallery-item img {
-    width: 300px;
-    height: 250px;
-    object-fit: cover;
-    display: block;
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
-  
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 1000px;
+  height: 600px;
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  animation: slideIn 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--gray-color);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.modal-image {
+  flex: 1;
+  max-width: 400px;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.modal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-title {
+  font-family: "Inter", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blue-color);
+  margin-bottom: 0.2rem;
+}
+
+.modal-artist {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  color: var(--gray-color);
+  margin-bottom: 1rem;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-tag {
+  background: transparent;
+  border: 1px solid var(--blue-color);
+  border-radius: 100px;
+  padding: 0.3rem 1rem;
+  color: var(--blue-color);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.modal-description-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--blue-color);
+  margin-bottom: 0.5rem;
+}
+
+.modal-description {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--gray-color);
+  flex: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    max-width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .modal-image {
+    max-width: none;
+  }
+
+  .modal-image img {
+    max-height: 300px;
+  }
+}

@@ -47,6 +47,19 @@ function showSlides() {
   setTimeout(showSlides, 5000);
 }
 
+// GO TO GALLERY PAGE
+document.addEventListener('DOMContentLoaded', function() {
+  const galleryButton = document.querySelector('.banner-btn');
+  
+  if (galleryButton) {
+    galleryButton.addEventListener('click', function() {
+      window.location.href = 'gallery.html';
+    });
+  } else {
+    console.error('Gallery button not found!');
+  }
+});
+
 // LIKE LOGIC
 document.addEventListener('DOMContentLoaded', function() {
   const likeContainers = document.querySelectorAll('.like-container');

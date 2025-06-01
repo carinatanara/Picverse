@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submision Page</title>
-    <link rel="stylesheet" href="submission.css" />
+    <link rel="stylesheet" href="css/submission.css" />
   </head>
-  <body>
-    <nav>
+  <body class="submission-page">
+    <nav class="submission-nav">
       <div class="logo">
         <h1>PICVERSE</h1>
       </div>
@@ -29,21 +29,75 @@
     </nav>
 
     <div class="submission-container">
-      <h2>Submission Form</h2>
+      <h2>Upload Your Work!</h2>
       <form
         id="submission-form"
         action="submit.php"
         method="post"
         enctype="multipart/form-data"
       >
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+        <div class="upload-area">
+          <svg
+            class="upload-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7,10 12,15 17,10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <div class="upload-text">Click to upload or drag and drop</div>
+          <div class="upload-subtext">PNG, JPG, JPEG up to 10MB</div>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            required
+          />
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="title">Title*</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Enter artwork title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+        </div>
 
-        <label for="photo">Upload Photo:</label>
-        <input type="file" id="photo" name="photo" accept="image/*" required />
+        <div class="form-group">
+          <label for="description">Description*</label>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Tell us about your artwork..."
+            required
+          ></textarea>
+        </div>
+
+        <div class="toggle-container">
+          <span class="toggle-text">My artwork is AI-Generated.</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="ai-generated" name="ai-generated" />
+            <span class="slider"></span>
+          </label>
+        </div>
 
         <button type="submit">Submit</button>
       </form>
