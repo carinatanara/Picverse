@@ -80,8 +80,7 @@ nav {
 body.submission-page {
   background-color: var(--light-green-color);
   font-family: "Inter", sans-serif;
-  height: 100vh;
-  overflow: hidden;
+  height: 120vh;
 }
 
 .submission-container {
@@ -203,6 +202,89 @@ textarea:focus {
 textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: var(--white-color);
+  min-height: 50px;
+  align-items: flex-start;
+  align-content: flex-start;
+  transition: border-color 0.3s ease;
+}
+
+.tags-container:focus-within {
+  border-color: var(--blue-color);
+  box-shadow: 0 0 0 3px rgba(32, 87, 129, 0.1);
+}
+
+.tag {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: tagAppear 0.2s ease;
+}
+
+@keyframes tagAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tag-remove {
+  background: none;
+  border: none;
+  color: var(--white-color);
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  transition: background-color 0.2s ease;
+}
+
+.tag-remove:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tag-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  min-width: 120px;
+  padding: 0.2rem 0;
+}
+
+.tag-input::placeholder {
+  color: #999;
+}
+
+.tags-hint {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.3rem;
 }
 
 .toggle-container {

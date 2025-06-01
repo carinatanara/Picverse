@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (!filterTags || !galleryFeeds) return;
   
-  // Count actual gallery items with images
   const realGalleryItems = Array.from(galleryItems).filter(item => item.querySelector('img'));
   const totalRealItems = realGalleryItems.length;
   const initialItemCount = 8;
@@ -23,15 +22,39 @@ document.addEventListener('DOMContentLoaded', function() {
   
   const style = document.createElement('style');
   style.textContent = `
+    .gallery-feeds {
+      animation: none !important;
+    }
+    
+    .gallery-feeds.reset-container {
+      max-height: 650px !important;
+      transform: translateY(0px) !important;
+      transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    }
+    
     .gallery-item-hidden {
-      opacity: 0;
-      transform: scale(0.95);
+      opacity: 0 !important;
+      transform: scale(0.95) !important;
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
     
     .gallery-item-hidden.reveal {
-      opacity: 1;
-      transform: scale(1);
+      opacity: 1 !important;
+      transform: scale(1) !important;
+      animation: revealItem 0.6s ease forwards;
+    }
+    
+    /* Fix hover animation conflicts */
+    .gallery-item:not(.gallery-item-hidden):hover {
+      transform: translateY(-5px) !important;
+    }
+    
+    .gallery-item-hidden:hover {
+      transform: scale(0.95) !important; /* Keep hidden scale on hover */
+    }
+    
+    .gallery-item-hidden.reveal:hover {
+      transform: scale(1) translateY(-5px) !important; /* Combine reveal + hover */
     }
     
     .gallery-item.filtered-out {
@@ -55,17 +78,26 @@ document.addEventListener('DOMContentLoaded', function() {
         transform: scale(1);
       }
     }
+    
+    @keyframes revealItem {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
   `;
   document.head.appendChild(style);
   
-  // Add "All" button to filter tags
   const allButton = document.createElement('button');
   allButton.className = 'tags active';
   allButton.textContent = 'All';
   allButton.dataset.filter = 'all';
   filterTags.insertBefore(allButton, filterTags.firstChild);
   
-  // Set data-filter attributes for existing tag buttons
   const updatedTagButtons = document.querySelectorAll('.tags');
   updatedTagButtons.forEach(button => {
     if (!button.dataset.filter) {
@@ -73,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Only hide items beyond initial count if there are actually more items
   let hiddenItems = [];
   if (totalRealItems > initialItemCount) {
     realGalleryItems.forEach((item, index) => {
@@ -84,19 +115,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Don't add any placeholder items - only work with real items
-  
   let startScrollPos = 150; 
   let endScrollPos = 400;   
   let lastProgress = 0;     
   let itemsRevealed = false; 
   let scrollAnimationEnabled = totalRealItems > initialItemCount;
   
-  // Filter function
   function filterGallery(filterValue) {
     activeFilter = filterValue;
     
-    // Update active tag button
     updatedTagButtons.forEach(button => {
       button.classList.remove('active');
       if (button.dataset.filter === filterValue) {
@@ -104,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Filter gallery items
     realGalleryItems.forEach(item => {
       const itemTags = item.dataset.tags || '';
       
@@ -117,7 +143,26 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Update grid layout after filtering
+    const visibleAfterFilter = realGalleryItems.filter(item => 
+      !item.classList.contains('filtered-out')
+    );
+    
+    if (visibleAfterFilter.length <= initialItemCount) {
+      visibleAfterFilter.forEach(item => {
+        item.classList.remove('gallery-item-hidden');
+        item.classList.add('reveal');
+      });
+      itemsRevealed = true;
+    } else {
+      realGalleryItems.forEach((item, index) => {
+        if (index >= initialItemCount && !item.classList.contains('filtered-out')) {
+          item.classList.add('gallery-item-hidden');
+          item.classList.remove('reveal');
+        }
+      });
+      itemsRevealed = false;
+    }
+    
     setTimeout(() => {
       updateGridLayout();
     }, 50);
@@ -134,47 +179,45 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     const totalVisible = visibleItems.length + revealedHiddenItems.length;
     
-    // If no items are visible, keep expanded height for custom content
     if (totalVisible === 0) {
-      console.log('🚨 NO ITEMS VISIBLE - Forcing height expansion');
-      
-      // DISABLE transitions temporarily
       galleryFeeds.style.transition = 'none';
-      
-      // FORCE the height
       galleryFeeds.style.setProperty('max-height', '2000px', 'important');
       galleryFeeds.style.setProperty('height', 'auto', 'important');
       galleryFeeds.style.setProperty('min-height', '800px', 'important');
-      
-      // Remove transform that might interfere
       galleryFeeds.style.transform = 'translateY(0px)';
-      
-      console.log('✅ Forced height applied with transitions disabled');
       return;
     }
     
-    // Re-enable transitions for normal filtering
-    galleryFeeds.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    
-    // Clear any forced styles from the "no items" state
-    galleryFeeds.style.removeProperty('height');
-    galleryFeeds.style.removeProperty('min-height');
-    
     if (activeFilter === 'all') {
-      // Reset to scroll-controlled height for "All" filter
-      console.log('🔄 Switched back to "All" - Resetting to scroll control');
-      galleryFeeds.style.removeProperty('max-height'); // Remove any forced max-height
+      galleryFeeds.removeAttribute('style');
       
-      handleScroll(); 
+      galleryFeeds.classList.add('reset-container');
+      
+      realGalleryItems.forEach((item, index) => {
+        if (index >= initialItemCount) {
+          item.classList.add('gallery-item-hidden');
+          item.classList.remove('reveal');
+        }
+      });
+      itemsRevealed = false;
+      
+      setTimeout(() => {
+        handleScroll();
+      }, 50);
+      
     } else {
+      galleryFeeds.classList.remove('reset-container');
+      galleryFeeds.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), max-height 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      galleryFeeds.style.removeProperty('height');
+      galleryFeeds.style.removeProperty('min-height');
+      
       const rowsNeeded = Math.ceil(totalVisible / 4);
       const newMaxHeight = Math.max(650, rowsNeeded * 300);
       galleryFeeds.style.setProperty('max-height', `${newMaxHeight}px`, 'important');
-      console.log('🔄 Filter active - Height set to:', newMaxHeight);
+      galleryFeeds.style.setProperty('transform', 'translateY(0px)', 'important');
     }
   }
   
-  // Add click event listeners to tag buttons
   updatedTagButtons.forEach(button => {
     button.addEventListener('click', () => {
       const filterValue = button.dataset.filter;
@@ -183,59 +226,60 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function handleScroll() {
-    // Check if there are any visible items after filtering
     const visibleItems = realGalleryItems.filter(item => 
       !item.classList.contains('filtered-out')
     );
     
-    // If no visible items, keep container static but maintain full height
     if (visibleItems.length === 0) {
       galleryFeeds.style.transform = 'translateY(0px)';
       filterTags.style.transform = 'translateY(0px)';
-      galleryFeeds.style.maxHeight = '2000px'; // Keep full expanded height
+      galleryFeeds.style.maxHeight = '2000px'; 
       return;
     }
     
-    // Only handle scroll animation if there are actually more items to reveal
-    if (!scrollAnimationEnabled) return;
+    if (!scrollAnimationEnabled || activeFilter !== 'all') return;
     
     const scrollY = window.scrollY;
     
     let progress = Math.max(0, Math.min(1, (scrollY - startScrollPos) / (endScrollPos - startScrollPos)));
     
     const moveAmount = -60 * progress; 
+    
+    if (progress > 0) {
+      galleryFeeds.classList.remove('reset-container');
+    }
+    
     galleryFeeds.style.transform = `translateY(${moveAmount}px)`;
     filterTags.style.transform = `translateY(${moveAmount}px)`;
     
-    // Only apply scroll-based height changes if no filter is active
-    if (activeFilter === 'all') {
-      const maxHeightValue = 650 + (1350 * progress); 
-      galleryFeeds.style.maxHeight = `${maxHeightValue}px`;
-    }
+    const maxHeightValue = 650 + (1350 * progress); 
+    galleryFeeds.style.maxHeight = `${maxHeightValue}px`;
     
-    if (progress > 0.3 && !itemsRevealed && hiddenItems.length > 0) {
+    if (progress > 0.1 && !itemsRevealed && hiddenItems.length > 0) {
       itemsRevealed = true;
       hiddenItems.forEach((item, index) => {
-        // Only reveal items that aren't filtered out
         if (!item.classList.contains('filtered-out')) {
           setTimeout(() => {
             item.classList.add('reveal');
-          }, 100 * index);
+          }, 150 * index); 
         }
       });
     }
     
-    if (progress < 0.2 && itemsRevealed && lastProgress > progress) {
+    if (progress < 0.05 && itemsRevealed && lastProgress > progress) {
       itemsRevealed = false;
       hiddenItems.forEach((item) => {
         item.classList.remove('reveal');
       });
+      
+      if (progress === 0) {
+        galleryFeeds.classList.add('reset-container');
+      }
     }
     
     lastProgress = progress;
   }
   
-  // Modal functionality
   function openModal(item) {
     const imgSrc = item.querySelector('img').src;
     const title = item.dataset.title || 'Untitled';
@@ -268,12 +312,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = ''; 
   }
   
-  // Add click event listeners to gallery items
   realGalleryItems.forEach(item => {
     item.addEventListener('click', () => openModal(item));
   });
   
-  // Close modal events
   closeModal.addEventListener('click', closeModalFunc);
   
   modal.addEventListener('click', (e) => {
@@ -288,22 +330,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Initialize
   window.addEventListener('scroll', handleScroll);
-  handleScroll();
   
-  // Initialize with all real items visible
   realGalleryItems.forEach(item => {
     item.classList.add('filtered-in');
   });
   
-  // If there are 8 or fewer items, ensure they're all visible and disable scroll animation
   if (totalRealItems <= initialItemCount) {
     galleryFeeds.style.maxHeight = '2000px';
     scrollAnimationEnabled = false;
-
     galleryPage.classList.add('compact');
+  } else {
+    galleryFeeds.style.maxHeight = '650px';
   }
 
   galleryFeeds.style.transform = 'translateY(0px)';
+  
+  setTimeout(() => {
+    handleScroll();
+  }, 50);
 });

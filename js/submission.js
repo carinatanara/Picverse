@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const titleInput = document.getElementById('title');
     const emailInput = document.getElementById('email');
     const descriptionInput = document.getElementById('description');
+    const tagsContainer = document.getElementById('tags-container');
+    const tagInput = document.getElementById('tag-input');
+    const tagsHiddenInput = document.getElementById('tags');
+    let tags = [];
 
     uploadArea.addEventListener('click', function() {
         fileInput.click();
@@ -31,6 +35,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    tagInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            if (addTag(this.value)) {
+                this.value = '';
+            }
+        }
+        
+        if (e.key === 'Backspace' && this.value === '' && tags.length > 0) {
+            removeTag(tags[tags.length - 1]);
+        }
+    });
+
+    tagInput.addEventListener('blur', function() {
+        if (this.value.trim()) {
+            if (addTag(this.value)) {
+                this.value = '';
+            }
+        }
+    });
+
     fileInput.addEventListener('change', function(e) {
         if (e.target.files.length > 0) {
             updateUploadAreaText(e.target.files[0]);
@@ -46,6 +71,48 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadSubtext.textContent = `Size: ${(file.size / 1024 / 1024).toFixed(2)}MB`;
         }
     }
+
+    function addTag(tagText) {
+        const trimmedTag = tagText.trim().toLowerCase();
+        
+        if (trimmedTag === '' || tags.includes(trimmedTag) || tags.length >= 10) {
+            return false;
+        }
+        
+        tags.push(trimmedTag);
+        updateTagsDisplay();
+        updateHiddenTagsInput();
+        return true;
+    }
+
+    function removeTag(tagToRemove) {
+        tags = tags.filter(tag => tag !== tagToRemove);
+        updateTagsDisplay();
+        updateHiddenTagsInput();
+    }
+
+    function updateTagsDisplay() {
+        const existingTags = tagsContainer.querySelectorAll('.tag');
+        existingTags.forEach(tag => tag.remove());
+        
+        tags.forEach(tag => {
+            const tagElement = document.createElement('div');
+            tagElement.className = 'tag';
+            tagElement.innerHTML = `
+                ${tag}
+                <button type="button" class="tag-remove" onclick="removeTagByText('${tag}')">×</button>
+            `;
+            tagsContainer.insertBefore(tagElement, tagInput);
+        });
+    }
+
+    function updateHiddenTagsInput() {
+        tagsHiddenInput.value = tags.join(',');
+    }
+
+    window.removeTagByText = function(tag) {
+        removeTag(tag);
+    };
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -107,6 +174,12 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
+        if (tags.length > 10) {
+            showError(tagsContainer, 'Maximum 10 tags allowed');
+            errors.push('Too many tags');
+            isValid = false;
+        }
+
         if (isValid) {
             showSuccess();
             // form.submit();
@@ -137,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function clearErrors() {
-        const inputs = [titleInput, emailInput, descriptionInput];
+        const inputs = [titleInput, emailInput, descriptionInput, tagsContainer]; 
         inputs.forEach(input => {
             input.style.borderColor = '#ddd';
             input.style.boxShadow = '';
@@ -192,6 +265,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(() => {
             form.reset();
+            tags = []; 
+            updateTagsDisplay(); 
+            updateHiddenTagsInput(); 
             document.querySelector('.upload-text').textContent = 'Click to upload or drag and drop';
             document.querySelector('.upload-subtext').textContent = 'PNG, JPG, JPEG up to 10MB';
         }, 2000);

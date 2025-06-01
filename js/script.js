@@ -208,9 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   setTimeout(() => {
     artworkGrid.scrollLeft = 100;
-    console.log('Forced scroll applied');
   }, 1000);
-  
-  console.log('Nuclear option initialized - without arrow buttons');
 });
 
