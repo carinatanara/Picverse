@@ -2,12 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz@0,14..32;1,14..32&display=swap");
 @font-face {
   font-family: "boulder";
-  src: url("assets/fonts/Boulder-Bold.ttf") format("truetype");
+  src: url("../assets/fonts/Boulder-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Anderson Grotesk";
-  src: url("assets/fonts/AndersonGrotesk-Bold.otf") format("opentype");
+  src: url("../assets/fonts/AndersonGrotesk-Bold.otf") format("opentype");
 }
 
 /* VARIABLES */
@@ -529,4 +529,144 @@
 .tab-content::-webkit-scrollbar-thumb {
   background-color: rgba(37, 95, 56, 0.3);
   border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .community-nav {
+    padding: 1rem 2rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+
+  .page-header {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .community-content {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-right: 2rem;
+  }
+
+  .forum-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    height: auto;
+  }
+
+  .forum-posts {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "post1"
+      "post2"
+      "post3"
+      "post4"
+      "more";
+    gap: 1rem;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .forum-post {
+    padding: 1rem 1rem 1.5rem 2.5rem;
+    min-height: 150px !important;
+  }
+
+  .post-icon {
+    left: 0.8rem;
+    top: 1rem;
+  }
+
+  .post-header h3 {
+    font-size: 0.9rem;
+    padding-right: 3rem;
+  }
+
+  .post-meta {
+    padding-top: 1.5rem;
+  }
+
+  .recent-activity {
+    padding: 1rem;
+    max-height: 400px;
+  }
+
+  .tab-buttons {
+    gap: 1rem;
+  }
+
+  .tab-btn {
+    font-size: 0.9rem;
+  }
+
+  .user-item {
+    padding: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .user-item .user-avatar {
+    width: 35px;
+    height: 35px;
+    margin-right: 0.6rem;
+  }
+
+  .activity-item {
+    padding: 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .activity-avatar {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .community-nav {
+    padding: 1rem;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .page-header {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .community-content {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-right: 1rem;
+  }
+
+  .forum-posts {
+    gap: 0.8rem;
+  }
+
+  .forum-post {
+    padding: 0.8rem 0.8rem 1.2rem 2rem;
+    min-height: 120px !important;
+  }
+
+  .post-icon {
+    left: 0.5rem;
+  }
+
+  .recent-activity {
+    padding: 0.8rem;
+  }
+
+  .tab-btn {
+    font-size: 0.8rem;
+    padding: 0.3rem 0;
+  }
 }

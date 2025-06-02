@@ -14,11 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeModal = document.getElementById('closeModal');
   
   if (!filterTags || !galleryFeeds) return;
+
+  function getURLParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  const filterFromURL = getURLParameter('filter');
   
   const realGalleryItems = Array.from(galleryItems).filter(item => item.querySelector('img'));
   const totalRealItems = realGalleryItems.length;
   const initialItemCount = 8;
-  let activeFilter = 'all';
+  let activeFilter = filterFromURL || 'all';
   
   const style = document.createElement('style');
   style.textContent = `
@@ -93,10 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
   document.head.appendChild(style);
   
   const allButton = document.createElement('button');
-  allButton.className = 'tags active';
-  allButton.textContent = 'All';
-  allButton.dataset.filter = 'all';
-  filterTags.insertBefore(allButton, filterTags.firstChild);
+allButton.className = filterFromURL ? 'tags' : 'tags active'; 
+allButton.textContent = 'All';
+allButton.dataset.filter = 'all';
+filterTags.insertBefore(allButton, filterTags.firstChild);
   
   const updatedTagButtons = document.querySelectorAll('.tags');
   updatedTagButtons.forEach(button => {
@@ -104,6 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
       button.dataset.filter = button.textContent.toLowerCase();
     }
   });
+
+  if (filterFromURL) {
+    setTimeout(() => {
+      filterGallery(filterFromURL);
+    }, 100);
+  }
   
   let hiddenItems = [];
   if (totalRealItems > initialItemCount) {

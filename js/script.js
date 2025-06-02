@@ -1,14 +1,14 @@
 // HERO SLIDESHOW
 const artNames = [
-    "Water Lilies",
-    "The Starry Night",
-    "The Persistence of Memory"
+    "Italian Spring",
+    "Lily Pond",
+    "Marea Baja in Varengeville"
 ];
 
 const artistNames = [
-    "Claude Monet", 
-    "Sophia Chen",  
-    "James Wilson"  
+    "Marilyn Simandle", 
+    "Claude Monet",  
+    "Claude Monet"  
 ];
 
 let slideIndex = 0;
