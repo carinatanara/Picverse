@@ -229,7 +229,7 @@
 
   .forum-post {
     padding: 1rem 1rem 1.5rem 2.5rem;
-    min-height: 150px;
+    min-height: 200px;
   }
 
   .post-icon {
@@ -247,7 +247,10 @@
   }
 
   .post-meta {
-    padding-top: 2rem;
+    padding-top: 1rem; 
+    margin-top: auto;
+    position: relative; 
+    bottom: 0;
   }
 
   .add-forum-btn {
@@ -274,7 +277,11 @@
 
   .forum-post {
     padding: 0.8rem 0.8rem 1.2rem 2rem;
-    min-height: 120px;
+    min-height: 180px; 
+  }
+
+  .post-meta {
+    padding-top: 1rem;
   }
 
   .post-icon {

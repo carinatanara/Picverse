@@ -27,11 +27,11 @@
 
 .community-page {
   background-color: var(--blue-color);
-  min-height: 100vh;
-  height: 100vh;
+  height: auto !important;
+  min-height: 100vh !important;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 .nav-menu {
@@ -237,7 +237,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
-  padding-top: 2rem; 
+  padding-top: 2rem;
 }
 
 .post-author {
@@ -410,7 +410,7 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: 2px solid var(--white-color);
   position: absolute;
   top: 0.75rem;
@@ -420,7 +420,7 @@
 .user-item .online-indicator {
   position: absolute;
   top: 70%;
-  left: 42px; 
+  left: 42px;
   transform: translateY(-50%);
   margin: 0;
 }
@@ -557,7 +557,8 @@
   .forum-container {
     grid-template-columns: 1fr;
     gap: 1rem;
-    height: auto;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .forum-posts {
@@ -592,9 +593,44 @@
     padding-top: 1.5rem;
   }
 
+  .see-more-link {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    grid-area: more;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
   .recent-activity {
     padding: 1rem;
-    max-height: 400px;
+    max-height: none !important;
+  }
+
+  .swipeable-content {
+    position: relative;
+    overflow: visible;
+    flex: 1;
+    min-height: 300px;
+  }
+
+  .tab-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+    padding-right: 0.5rem;
+    display: none;
+  }
+
+  .tab-content.active {
+    opacity: 1;
+    transform: translateX(0);
+    display: block;
   }
 
   .tab-buttons {
@@ -619,6 +655,12 @@
   .activity-item {
     padding: 0.8rem;
     margin-bottom: 0.6rem;
+  }
+
+  .activity-item,
+  .user-item {
+    position: relative;
+    z-index: 1;
   }
 
   .activity-avatar {

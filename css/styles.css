@@ -624,15 +624,15 @@ nav {
   }
 
   .footer-wrapper {
-    margin-top: 8rem !important; /* ✅ More space to accommodate taller green container */
-    padding: 3rem 2rem !important; /* ✅ More padding */
+    margin-top: 8rem !important;
+    padding: 3rem 2rem !important; 
     height: auto !important;
-    min-height: 400px !important; /* ✅ Taller footer */
+    min-height: 400px !important; 
   }
 
   .footer-content {
-    display: grid !important; /* ✅ Keep grid layout */
-    grid-template-columns: 1fr 1fr !important; /* ✅ Two equal columns */
+    display: grid !important; 
+    grid-template-columns: 1fr 1fr !important; 
     gap: 2rem !important;
     text-align: left !important;
     max-width: 100% !important;
@@ -643,7 +643,7 @@ nav {
   .footer-nav {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important; /* ✅ Left align */
+    align-items: flex-start !important;  
     gap: 1.5rem !important;
     width: 100% !important;
   }
@@ -651,7 +651,7 @@ nav {
   .footer-links {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important; /* ✅ Left align */
+    align-items: flex-start !important;
     gap: 1.2rem !important;
   }
 
@@ -664,7 +664,7 @@ nav {
   .footer-contact {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important; /* ✅ Right align */
+    align-items: flex-end !important;
     gap: 1.5rem !important;
     text-align: right !important;
     width: 100% !important;
@@ -673,7 +673,7 @@ nav {
   .contact-item {
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important; /* ✅ Right align */
+    align-items: flex-end !important;
     gap: 0.3rem !important;
   }
 
@@ -695,7 +695,7 @@ nav {
   }
 
   .footer-brand h1 {
-    font-size: 6rem !important; /* ✅ Large PICVERSE text */
+    font-size: 6rem !important;  
     line-height: 1 !important;
   }
 }

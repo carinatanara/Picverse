@@ -51,17 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
       animation: revealItem 0.6s ease forwards;
     }
     
-    /* Fix hover animation conflicts */
     .gallery-item:not(.gallery-item-hidden):hover {
       transform: translateY(-5px) !important;
     }
     
     .gallery-item-hidden:hover {
-      transform: scale(0.95) !important; /* Keep hidden scale on hover */
+      transform: scale(0.95) !important;
     }
     
     .gallery-item-hidden.reveal:hover {
-      transform: scale(1) translateY(-5px) !important; /* Combine reveal + hover */
+      transform: scale(1) translateY(-5px) !important; 
     }
     
     .gallery-item.filtered-out {
